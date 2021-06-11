@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "808196579594",
+    "project_id": "desafio-leal-apps-c837c",
+    "storage_bucket": "desafio-leal-apps-c837c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:808196579594:android:f7c60dc4fc7f9347135af3",
+        "android_client_info": {
+          "package_name": "com.example.lealappsdesafio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "808196579594-9ok31l7dv8j8novuh8likfj944nreuuu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lealappsdesafio",
+            "certificate_hash": "5534ea188d803eb1ecb3b9e98b650fca7391125c"
+          }
+        },
+        {
+          "client_id": "808196579594-pini3av3j6g37d4sn10n4qfhvvb3eqqt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaydnx4VJzZxDurfnZS9aAeYDLmg-mnPo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "808196579594-pini3av3j6g37d4sn10n4qfhvvb3eqqt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
