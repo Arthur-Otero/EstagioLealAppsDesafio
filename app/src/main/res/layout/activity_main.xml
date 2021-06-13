@@ -10,14 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:backgroundTint="#4DF4F3F3"
+        app:backgroundTint="#4DF4F3F3"
+        app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="20dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -34,15 +37,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                app:errorEnabled="true"
-                android:hint="E-mail">
+                android:hint="E-mail"
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/fieldEmail"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -51,16 +54,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:hint="Senha"
                 app:errorEnabled="true"
-                app:passwordToggleEnabled="true"
-                android:hint="Senha">
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
                     android:id="@+id/fieldPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:layout_height="wrap_content" />
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -68,23 +71,25 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:backgroundTint="#00B5FF"
-                android:onClick="login"
                 android:hint="Login"
+                android:onClick="login"
                 android:padding="10dp"
                 android:textColorHint="@color/white"
                 android:textSize="15sp" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/or"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@+id/tvNovo">
 
                 <View
-                    android:id="@+id/vwLinha"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:background="#7CFFFFFF"
                     android:backgroundTint="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -92,10 +97,10 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvOr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:layout_gravity="center"
+                    android:background="#4DF4F3F3"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:text="OU"
@@ -104,7 +109,18 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="#7CFFFFFF"
+                    android:backgroundTint="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <Button
                 android:layout_width="match_parent"
@@ -112,8 +128,8 @@
                 android:layout_margin="10dp"
                 android:backgroundTint="#3F7EE8"
                 android:hint="Google"
-                android:padding="10dp"
                 android:onClick="signInGoogle"
+                android:padding="10dp"
                 android:textColorHint="@color/white"
                 android:textSize="15sp"
                 app:icon="@drawable/googleg_standard_color_18" />
