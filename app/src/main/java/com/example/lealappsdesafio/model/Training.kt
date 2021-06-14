@@ -1,13 +1,13 @@
 package com.example.lealappsdesafio.model
 
-import java.sql.Timestamp
+import com.google.firebase.Timestamp
 
 class Training() {
-    var name : Number = 0
+    var name : Int = 0
     var description : String = ""
     var date : Timestamp? = null
 
-    constructor(name:Number,description : String,date : Timestamp?):this(){
+    constructor(name:Int,description : String,date : Timestamp?):this(){
         this.name = name
         this.description = description
         this.date = date
