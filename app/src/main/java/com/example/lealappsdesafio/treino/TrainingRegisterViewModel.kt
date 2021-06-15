@@ -9,7 +9,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class TrainingRegisterViewModel(): ViewModel() {
+class TrainingRegisterViewModel: ViewModel() {
     val editTraining by lazy { MutableLiveData<Training>() }
 
     private var fireStore = Firebase.firestore
@@ -64,7 +64,9 @@ class TrainingRegisterViewModel(): ViewModel() {
 
     private fun editTrainings(bodybuilding: Bodybuilding?, training: Training,position: Int){
         val lastTraining = bodybuilding?.training
-        lastTraining?.set(position, training)
+        lastTraining?.get(position)?.description = training.description
+        lastTraining?.get(position)?.date = training.date
+        lastTraining?.get(position)?.name = training.name
         lastTraining?.let { createTrainings(it) }
     }
 }

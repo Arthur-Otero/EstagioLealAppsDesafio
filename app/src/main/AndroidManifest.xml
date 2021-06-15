@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LealAppsDesafio">
+        <activity android:name=".exercicio.ExerciseRegisterActivity"></activity>
+        <activity android:name=".exercicio.ExerciseActivity" />
         <activity android:name=".treino.TrainingActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".treino.TrainingRegisterActivity"/>
+        <activity android:name=".treino.TrainingRegisterActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

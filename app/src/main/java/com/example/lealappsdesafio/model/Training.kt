@@ -6,10 +6,12 @@ class Training() {
     var name : Int = 0
     var description : String = ""
     var date : Timestamp? = null
+    var exercises : MutableList<Exercise> = mutableListOf()
 
-    constructor(name:Int,description : String,date : Timestamp?):this(){
+    constructor(name:Int,description : String,date : Timestamp?,exercises : MutableList<Exercise>):this(){
         this.name = name
         this.description = description
         this.date = date
+        this.exercises = exercises
     }
 }

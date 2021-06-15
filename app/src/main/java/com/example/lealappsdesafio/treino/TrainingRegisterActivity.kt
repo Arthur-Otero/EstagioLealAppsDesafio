@@ -57,7 +57,7 @@ class TrainingRegisterActivity : AppCompatActivity() {
         val nameText = name.text.toString().toInt()
         val descriptionText = description.text.toString()
 
-        viewModel.getTrainings(Training(nameText,descriptionText,ts),null)
+        viewModel.getTrainings(Training(nameText,descriptionText,ts, mutableListOf()),null)
         finish()
     }
 
@@ -67,7 +67,7 @@ class TrainingRegisterActivity : AppCompatActivity() {
         val nameText = name.text.toString().toInt()
         val descriptionText = description.text.toString()
 
-        viewModel.getTrainings(Training(nameText,descriptionText,ts),position)
+        viewModel.getTrainings(Training(nameText,descriptionText,ts, mutableListOf()),position)
         finish()
     }
 }
