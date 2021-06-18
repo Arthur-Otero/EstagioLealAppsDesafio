@@ -7,6 +7,9 @@ import com.example.lealappsdesafio.model.Training
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 
 class TrainingViewModel:ViewModel() {
     private var fireStore = Firebase.firestore
@@ -14,7 +17,7 @@ class TrainingViewModel:ViewModel() {
 
     val trainings by lazy { MutableLiveData<MutableList<Training>>() }
 
-    fun getTrainings(){
+    fun getTrainings() = CoroutineScope(IO).launch{
         firebaseAuth.currentUser?.let { user->
             fireStore.collection("users")
                 .document(user.uid)

@@ -11,6 +11,9 @@ import androidx.annotation.MenuRes
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lealappsdesafio.R
+import com.example.lealappsdesafio.exercicio.ExerciseActivity
+import com.example.lealappsdesafio.model.Data
+import com.example.lealappsdesafio.model.Exercise
 import com.example.lealappsdesafio.model.Training
 import java.lang.reflect.Method
 import java.text.SimpleDateFormat
@@ -40,6 +43,12 @@ class TrainingAdapter(val callback : (Int, Char)->Unit) : RecyclerView.Adapter<T
 
         holder.menu.setOnClickListener {
             showMenu(it, R.menu.menu_training_card,position)
+        }
+        holder.itemView.setOnClickListener {
+            Data.trainings = trainings
+            Data.position = position
+            val intent = Intent(it.context,ExerciseActivity::class.java)
+            it.context.startActivity(intent)
         }
     }
 

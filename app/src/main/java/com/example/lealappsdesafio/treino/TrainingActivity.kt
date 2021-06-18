@@ -44,7 +44,6 @@ class TrainingActivity : AppCompatActivity() {
         super.onResume()
         val handle = Handler(Looper.myLooper()!!)
         handle.postDelayed(Runnable { viewModel.getTrainings() }, 500)
-        viewModel.getTrainings()
     }
 
     fun floatButtonClick(view:View){
