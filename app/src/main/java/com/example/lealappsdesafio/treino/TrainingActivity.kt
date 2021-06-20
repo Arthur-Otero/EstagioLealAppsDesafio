@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lealappsdesafio.R
 import com.example.lealappsdesafio.model.Training
+import java.lang.NullPointerException
 import java.sql.Timestamp
 
 class TrainingActivity : AppCompatActivity() {
@@ -25,17 +27,21 @@ class TrainingActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(TrainingViewModel::class.java)
         viewModel.getTrainings()
         viewModel.trainings.observe(this){
-            val adapter = TrainingAdapter(){ position, type->
-                if (type == 'e'){
-                    val intent = Intent(this,TrainingRegisterActivity::class.java)
-                    intent.putExtra("POSITION",position)
-                    startActivity(intent)
-                }else{
-                    viewModel.deleteTraining(it,position)
+            try {
+                val adapter = TrainingAdapter{ position, type->
+                    if (type == 'e'){
+                        val intent = Intent(this,TrainingRegisterActivity::class.java)
+                        intent.putExtra("POSITION",position)
+                        startActivity(intent)
+                    }else{
+                        viewModel.deleteTraining(it,position)
+                    }
                 }
+                recyclerView.adapter = adapter
+                adapter.addTraining(it)
+            }catch (e:NullPointerException){
+                Toast.makeText(this,"Nada encontrado",Toast.LENGTH_LONG).show()
             }
-            recyclerView.adapter = adapter
-            adapter.addTraining(it)
         }
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
@@ -43,7 +49,7 @@ class TrainingActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val handle = Handler(Looper.myLooper()!!)
-        handle.postDelayed(Runnable { viewModel.getTrainings() }, 500)
+        handle.postDelayed({ viewModel.getTrainings() }, 500)
     }
 
     fun floatButtonClick(view:View){

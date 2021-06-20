@@ -6,11 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".treino.TrainingActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarTraining"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:minHeight="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/black"
+                android:src="@drawable/lealapp_logo"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.Toolbar>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/trainingRecycle"
-        android:layout_marginBottom="15dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarTraining" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/trainingAddBtn"

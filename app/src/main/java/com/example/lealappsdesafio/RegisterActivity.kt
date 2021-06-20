@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -20,6 +21,7 @@ class RegisterActivity : AppCompatActivity() {
     private val tvEmail by lazy { findViewById<TextInputLayout>(R.id.emailField) }
     private val tvPassword by lazy { findViewById<TextInputLayout>(R.id.passwordField) }
     private val tvConfirmPassword by lazy { findViewById<TextInputLayout>(R.id.confirmPasswordField) }
+    private val toolbar by lazy { findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbarRegister) }
 
     private val firebaseAuth = Firebase.auth
     private lateinit var viewModel: RegisterViewModel
@@ -28,6 +30,9 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
         viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
         fieldsValidate()
     }

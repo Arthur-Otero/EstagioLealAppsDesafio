@@ -37,14 +37,14 @@ class TrainingRegisterActivity : AppCompatActivity() {
                 name.text = SpannableStringBuilder(it.name.toString())
                 description.text = SpannableStringBuilder(it.description)
             }
-            info.text = "Editar Treino"
+            info.text = "Edite um Treino"
 
             confirmButton.setOnClickListener {
                 edit(position)
             }
 
         }else{
-            info.text = "Criar Treino"
+            info.text = "Crie um Treino"
             confirmButton.setOnClickListener {
                 confirm()
             }
