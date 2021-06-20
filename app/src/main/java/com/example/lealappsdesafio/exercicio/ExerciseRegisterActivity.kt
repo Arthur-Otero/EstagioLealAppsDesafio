@@ -87,13 +87,17 @@ class ExerciseRegisterActivity : AppCompatActivity() {
                 else -> Toast.makeText(this, "Ocorreu algum erro", Toast.LENGTH_LONG).show()
             }
 
+            if (imageUri!=null)
             viewModel.loadingTotal.observe(this){ total ->
+                button.isClickable = false
                 progress.visibility = VISIBLE
                 viewModel.loadingNow.observe(this){ now ->
                     if (total == now)
                         finish()
                 }
             }
+            else
+                finish()
         }
 
         backBtn.setOnClickListener {
