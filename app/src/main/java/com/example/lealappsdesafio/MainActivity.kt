@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
+import com.example.lealappsdesafio.exercicio.ExerciseActivity
 import com.example.lealappsdesafio.treino.TrainingActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -121,7 +122,7 @@ class MainActivity : AppCompatActivity() {
     private fun sigInFirebase(email: String, pass: String) {
         firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                val intent = Intent(this, RegisterActivity::class.java)
+                val intent = Intent(this, TrainingActivity::class.java)
                 startActivity(intent)
                 finish()
             } else {
