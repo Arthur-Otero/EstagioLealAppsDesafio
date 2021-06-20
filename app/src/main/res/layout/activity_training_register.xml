@@ -27,6 +27,7 @@
         tools:layout_editor_absoluteX="10dp" />
 
     <ImageView
+        android:id="@+id/backBtnTraining"
         android:layout_width="30dp"
         android:layout_height="30dp"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,10 +1,14 @@
 package com.example.lealappsdesafio.treino
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.lealappsdesafio.R
 import com.example.lealappsdesafio.model.Bodybuilding
 import com.example.lealappsdesafio.model.Training
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -59,5 +63,10 @@ class TrainingViewModel:ViewModel() {
 
                 }
         }
+    }
+
+    fun logout(googleSignIn:GoogleSignInClient){
+        googleSignIn.signOut()
+        firebaseAuth.signOut()
     }
 }

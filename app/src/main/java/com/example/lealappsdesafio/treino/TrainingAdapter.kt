@@ -38,6 +38,7 @@ class TrainingAdapter(val callback : (Int, Char)->Unit) : RecyclerView.Adapter<T
 
         val formatter = SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale("pt-BR"))
         val dateString: String = formatter.format(Date(trainings[position].date!!.seconds * 1000L))
+        formatter.timeZone = TimeZone.getDefault()
 
         holder.date.text = dateString
 

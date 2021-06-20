@@ -25,6 +25,8 @@ class ExerciseRegisterViewModel : ViewModel() {
     val name by lazy { MutableLiveData<String>() }
     val note by lazy { MutableLiveData<String>() }
     val imageObserve by lazy { MutableLiveData<Uri>() }
+    val loadingTotal by lazy { MutableLiveData<Long>() }
+    val loadingNow by lazy { MutableLiveData<Long>() }
 
     private var uri:Uri? = null
 
@@ -48,8 +50,9 @@ class ExerciseRegisterViewModel : ViewModel() {
                         Log.d("StorageResultInfoUpload", "sucesso")
                     }.addOnFailureListener {
                         Log.d("StorageResultInfoUpload", "fracasso")
-                    }.addOnProgressListener {
-                        it
+                    }.addOnProgressListener { bytes ->
+                        loadingTotal.postValue(bytes.totalByteCount)
+                        loadingNow.postValue(bytes.bytesTransferred)
                     }
             }
         }

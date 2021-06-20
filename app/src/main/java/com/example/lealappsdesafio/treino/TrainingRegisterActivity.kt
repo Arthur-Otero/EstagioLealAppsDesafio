@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -20,6 +21,7 @@ class TrainingRegisterActivity : AppCompatActivity() {
     private val description by lazy { findViewById<TextInputEditText>(R.id.tvDescription) }
     private val confirmButton by lazy { findViewById<Button>(R.id.button) }
     private val info by lazy { findViewById<TextView>(R.id.trainingInfo) }
+    private val backBtn by lazy { findViewById<ImageView>(R.id.backBtnTraining) }
 
     private lateinit var viewModel: TrainingRegisterViewModel
 
@@ -48,6 +50,10 @@ class TrainingRegisterActivity : AppCompatActivity() {
             confirmButton.setOnClickListener {
                 confirm()
             }
+        }
+
+        backBtn.setOnClickListener {
+            onBackPressed()
         }
     }
 

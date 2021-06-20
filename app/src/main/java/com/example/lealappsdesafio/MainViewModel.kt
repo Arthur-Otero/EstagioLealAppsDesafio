@@ -14,8 +14,6 @@ class MainViewModel : ViewModel() {
     val emailValidate: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>() }
     val passwordValidate: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>() }
 
-    private val firebaseAuth = Firebase.auth
-
     fun validateFields(email: String, password: String){
         when{
             validateEmail(email) && validaPass(password)->{

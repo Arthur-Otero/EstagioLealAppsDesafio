@@ -91,7 +91,7 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this,"Conta criada com sucesso", Toast.LENGTH_LONG).show()
                 finish()
             } else {
-                Toast.makeText(this,"Falha ao criar conta, tente novamente depois", Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"Falha ao criar conta, verifique o formado do e-mail ou tente novamente mais tarde", Toast.LENGTH_LONG).show()
             }
         }
     }

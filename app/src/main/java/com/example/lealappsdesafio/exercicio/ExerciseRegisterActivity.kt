@@ -8,10 +8,15 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.SpannableStringBuilder
+import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -32,6 +37,8 @@ class ExerciseRegisterActivity : AppCompatActivity() {
     private val picture by lazy { findViewById<ImageView>(R.id.imageExercise) }
     private val note by lazy { findViewById<TextInputEditText>(R.id.tvNote) }
     private val button by lazy { findViewById<Button>(R.id.button) }
+    private val backBtn by lazy { findViewById<ImageView>(R.id.backBtnExercise) }
+    private val progress by lazy { findViewById<com.google.android.material.progressindicator.LinearProgressIndicator>(R.id.progressIndicator) }
 
     companion object {
         const val FILE_AUTHORITY = "com.example.lealappsdesafio"
@@ -41,12 +48,12 @@ class ExerciseRegisterActivity : AppCompatActivity() {
     var fileShare: File? = null
     private lateinit var permissionsHelper: PermissionsHelper
 
-    private lateinit var viewModel : ExerciseRegisterViewModel
+    private lateinit var viewModel: ExerciseRegisterViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exercise_register)
-        window.statusBarColor = ContextCompat.getColor(this ,R.color.black)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
 
         permissionsHelper = PermissionsHelper(this)
         viewModel = ViewModelProvider(this).get(ExerciseRegisterViewModel::class.java)
@@ -58,18 +65,18 @@ class ExerciseRegisterActivity : AppCompatActivity() {
         val intent = intent.extras
         val extra = intent?.getChar("TYPE")
         val position = intent?.getInt("POSITION")
-        if (extra == 'c'){
+        if (extra == 'c') {
             info.text = "Crie um exercício"
-        }else if (extra == 'e'){
+        } else if (extra == 'e') {
             position?.let { viewModel.getData(it) }
             info.text = "Edite o exercício"
-            viewModel.name.observe(this){
+            viewModel.name.observe(this) {
                 name.text = SpannableStringBuilder(it)
             }
-            viewModel.note.observe(this){
+            viewModel.note.observe(this) {
                 note.text = SpannableStringBuilder(it)
             }
-            viewModel.imageObserve.observe(this){
+            viewModel.imageObserve.observe(this) {
                 Picasso.get().load(it).into(picture)
             }
         }
@@ -77,29 +84,39 @@ class ExerciseRegisterActivity : AppCompatActivity() {
             when (extra) {
                 'c' -> postData()
                 'e' -> position?.let { it1 -> updateData(it1) }
-                else -> Toast.makeText(this,"Ocorreu algum erro",Toast.LENGTH_LONG).show()
+                else -> Toast.makeText(this, "Ocorreu algum erro", Toast.LENGTH_LONG).show()
             }
 
-            finish()
+            viewModel.loadingTotal.observe(this){ total ->
+                progress.visibility = VISIBLE
+                viewModel.loadingNow.observe(this){ now ->
+                    if (total == now)
+                        finish()
+                }
+            }
+        }
+
+        backBtn.setOnClickListener {
+            onBackPressed()
         }
     }
 
-    fun postData(){
+    fun postData() {
         val nameData = name.text.toString().toInt()
         val noteData = note.text.toString()
         val currentTime: Date = Calendar.getInstance().time
 
-        viewModel.updateData(Exercise(nameData,"${imageUri}_${currentTime}",noteData),imageUri)
+        viewModel.updateData(Exercise(nameData, "${imageUri}_${currentTime}", noteData), imageUri)
     }
 
-    private fun updateData(exercisePosition:Int){
+    private fun updateData(exercisePosition: Int) {
         val nameData = name.text.toString()
         val noteData = note.text.toString()
 
-        viewModel.updateExercise(nameData,noteData,imageUri,exercisePosition)
+        viewModel.updateExercise(nameData, noteData, imageUri, exercisePosition)
     }
 
-    fun takePhoto() {
+    private fun takePhoto() {
         val permissions =
             listOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
         if (permissionsHelper.requestAllPermission(permissions)) {
